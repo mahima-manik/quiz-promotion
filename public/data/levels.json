@@ -1,4 +1,4 @@
 [
-  { "id": 1, "limit": 10, "passScore": 1, "file": "level1.json" },
-  { "id": 2, "limit": 12, "passScore": 1, "file": "level2.json" }
+  { "id": 1, "limit": 3, "passScore": 1, "file": "level1.json" },
+  { "id": 2, "limit": 2, "passScore": 1, "file": "level2.json" }
 ]

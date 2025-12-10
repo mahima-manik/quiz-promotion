@@ -5,7 +5,14 @@ import { loadQuestions, getNextLevelId, QuizData } from '../lib/quizData';
 import QuestionCard from './QuestionCard';
 import Results from './Results';
 
-export default function Quiz() {
+interface QuizProps {
+  userData?: { name: string; phone: string } | null;
+}
+
+export default function Quiz({ userData }: QuizProps) {
+  // userData is available for future use (e.g., saving results, personalization)
+  void userData; // Suppress unused variable warning
+  
   const [quizData, setQuizData] = useState<QuizData | null>(null);
   const [currentLevelId, setCurrentLevelId] = useState(1);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);

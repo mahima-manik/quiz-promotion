@@ -2,12 +2,29 @@
 
 import { useState } from 'react';
 import Quiz from './components/Quiz';
+import UserDetails from './components/UserDetails';
 
 export default function Home() {
+  const [showUserDetails, setShowUserDetails] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
+  const [userData, setUserData] = useState<{ name: string; phone: string } | null>(null);
+
+  const handleStartQuiz = () => {
+    setShowUserDetails(true);
+  };
+
+  const handleUserDetailsContinue = (data: { name: string; phone: string } | null) => {
+    setUserData(data);
+    setShowUserDetails(false);
+    setQuizStarted(true);
+  };
+
+  if (showUserDetails) {
+    return <UserDetails onContinue={handleUserDetailsContinue} />;
+  }
 
   if (quizStarted) {
-    return <Quiz />;
+    return <Quiz userData={userData} />;
   }
 
   return (
@@ -23,7 +40,7 @@ export default function Home() {
         </div>
         <div className="mt-8 w-full max-w-sm">
           <button
-            onClick={() => setQuizStarted(true)}
+            onClick={handleStartQuiz}
             className="w-full h-14 flex items-center justify-center rounded-full bg-foreground px-6 text-background text-base font-semibold transition-colors hover:opacity-90"
           >
             Start Quiz
