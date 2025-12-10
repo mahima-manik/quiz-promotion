@@ -49,7 +49,16 @@ export async function loadQuestions(levelId: number): Promise<QuizData | null> {
       throw new Error(`Failed to load questions for level ${levelId}`);
     }
     const data = await response.json();
-    return data as QuizData;
+    
+    // Apply the limit: take only the first N questions based on level.limit
+    const limitedQuestions = data.questions.slice(0, level.limit);
+    
+    return {
+      ...data,
+      limit: level.limit,
+      passScore: level.passScore,
+      questions: limitedQuestions,
+    } as QuizData;
   } catch (error) {
     console.error(`Error loading questions for level ${levelId}:`, error);
     return null;

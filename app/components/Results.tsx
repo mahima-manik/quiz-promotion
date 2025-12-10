@@ -7,9 +7,10 @@ interface ResultsProps {
   answers: string[];
   onRestart: () => void;
   onNextLevel?: () => void;
+  onCancel?: () => void;
 }
 
-export default function Results({ quizData, answers, onRestart, onNextLevel }: ResultsProps) {
+export default function Results({ quizData, answers, onRestart, onNextLevel, onCancel }: ResultsProps) {
   // Calculate score
   const correctAnswers = quizData.questions.filter(
     (question: Question, index: number) => question.answer === answers[index]
@@ -20,7 +21,16 @@ export default function Results({ quizData, answers, onRestart, onNextLevel }: R
   const passed = true || score >= quizData.passScore;
 
   return (
-    <div className="w-full max-w-2xl mx-auto px-4 py-8">
+    <div className="w-full max-w-2xl mx-auto px-4 py-8 relative">
+      {onCancel && (
+        <button
+          onClick={onCancel}
+          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors z-10"
+          aria-label="Cancel quiz"
+        >
+          <span className="text-xl text-foreground">×</span>
+        </button>
+      )}
       {/* Result Header */}
       <div className="text-center mb-8">
         <div

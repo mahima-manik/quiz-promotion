@@ -4,9 +4,10 @@ import { useState } from 'react';
 
 interface UserDetailsProps {
   onContinue: (userData: { name: string; phone: string } | null) => void;
+  onCancel?: () => void;
 }
 
-export default function UserDetails({ onContinue }: UserDetailsProps) {
+export default function UserDetails({ onContinue, onCancel }: UserDetailsProps) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
@@ -25,7 +26,16 @@ export default function UserDetails({ onContinue }: UserDetailsProps) {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="w-full max-w-md mx-auto px-4 py-8">
+      <main className="w-full max-w-md mx-auto px-4 py-8 relative">
+        {onCancel && (
+          <button
+            onClick={onCancel}
+            className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors z-10"
+            aria-label="Cancel"
+          >
+            <span className="text-xl text-foreground">×</span>
+          </button>
+        )}
         <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6 sm:p-8">
           <div className="text-center mb-6">
             <h2 className="text-2xl sm:text-3xl font-semibold text-foreground mb-2">

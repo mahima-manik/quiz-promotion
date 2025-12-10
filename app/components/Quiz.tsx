@@ -7,9 +7,10 @@ import Results from './Results';
 
 interface QuizProps {
   userData?: { name: string; phone: string } | null;
+  onCancel?: () => void;
 }
 
-export default function Quiz({ userData }: QuizProps) {
+export default function Quiz({ userData, onCancel }: QuizProps) {
   // userData is available for future use (e.g., saving results, personalization)
   void userData; // Suppress unused variable warning
   
@@ -82,7 +83,16 @@ export default function Quiz({ userData }: QuizProps) {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center relative">
+        {onCancel && (
+          <button
+            onClick={onCancel}
+            className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors"
+            aria-label="Cancel quiz"
+          >
+            <span className="text-xl text-foreground">×</span>
+          </button>
+        )}
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-foreground border-r-transparent mb-4"></div>
           <p className="text-lg text-zinc-600 dark:text-zinc-400">Loading quiz...</p>
@@ -93,7 +103,16 @@ export default function Quiz({ userData }: QuizProps) {
 
   if (error) {
     return (
-      <div className="flex min-h-screen items-center justify-center px-4">
+      <div className="flex min-h-screen items-center justify-center px-4 relative">
+        {onCancel && (
+          <button
+            onClick={onCancel}
+            className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors z-10"
+            aria-label="Cancel quiz"
+          >
+            <span className="text-xl text-foreground">×</span>
+          </button>
+        )}
         <div className="text-center">
           <p className="text-xl font-semibold text-red-600 dark:text-red-400 mb-4">
             {error}
@@ -120,6 +139,7 @@ export default function Quiz({ userData }: QuizProps) {
         answers={answers}
         onRestart={handleRestart}
         onNextLevel={nextLevelId !== null ? handleNextLevel : undefined}
+        onCancel={onCancel}
       />
     );
   }
@@ -127,7 +147,16 @@ export default function Quiz({ userData }: QuizProps) {
   const currentQuestion = quizData.questions[currentQuestionIndex];
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-8">
+    <div className="min-h-screen flex items-center justify-center py-8 relative">
+      {onCancel && (
+        <button
+          onClick={onCancel}
+          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors z-10"
+          aria-label="Cancel quiz"
+        >
+          <span className="text-xl text-foreground">×</span>
+        </button>
+      )}
       <QuestionCard
         question={currentQuestion}
         questionNumber={currentQuestionIndex + 1}

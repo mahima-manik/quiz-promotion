@@ -19,12 +19,19 @@ export default function Home() {
     setQuizStarted(true);
   };
 
+  const handleCancelQuiz = () => {
+    // Reset all state to return to home page
+    setShowUserDetails(false);
+    setQuizStarted(false);
+    setUserData(null);
+  };
+
   if (showUserDetails) {
-    return <UserDetails onContinue={handleUserDetailsContinue} />;
+    return <UserDetails onContinue={handleUserDetailsContinue} onCancel={handleCancelQuiz} />;
   }
 
   if (quizStarted) {
-    return <Quiz userData={userData} />;
+    return <Quiz userData={userData} onCancel={handleCancelQuiz} />;
   }
 
   return (
