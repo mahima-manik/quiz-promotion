@@ -1,0 +1,31 @@
+{
+  "level": 1,
+  "limit": 10,
+  "passScore": 7,
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is 2 + 2?",
+      "options": ["3", "4", "22", "5"],
+      "answer": "4"
+    },
+    {
+      "id": 2,
+      "question": "Largest ocean?",
+      "options": ["Atlantic", "Indian", "Pacific", "Arctic"],
+      "answer": "Pacific"
+    },
+    {
+      "id": 3,
+      "question": "What is 2 + 2?",
+      "options": ["3", "4", "22", "5"],
+      "answer": "4"
+    },
+    {
+      "id": 4,
+      "question": "Largest ocean?",
+      "options": ["Atlantic", "Indian", "Pacific", "Arctic"],
+      "answer": "Pacific"
+    }
+  ]
+}

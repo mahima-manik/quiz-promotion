@@ -1,0 +1,19 @@
+{
+  "level": 1,
+  "limit": 10,
+  "passScore": 7,
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is 3 + 3?",
+      "options": ["6", "4", "22", "5"],
+      "answer": "6"
+    },
+    {
+      "id": 2,
+      "question": "Largest ocean?",
+      "options": ["Atlantic", "Indian", "Pacific", "Arctic"],
+      "answer": "Pacific"
+    }
+  ]
+}
