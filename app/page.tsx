@@ -13,7 +13,24 @@ export default function Home() {
     setShowUserDetails(true);
   };
 
-  const handleUserDetailsContinue = (data: { name: string; phone: string } | null) => {
+  const handleUserDetailsContinue = async (data: { name: string; phone: string } | null) => {
+    // Save user details to Google Sheets if provided
+    if (data && (data.name || data.phone)) {
+      try {
+        await fetch('/api/save-user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+        // Don't block quiz start if save fails - fail silently
+      } catch (error) {
+        console.error('Failed to save user details:', error);
+        // Continue with quiz even if save fails
+      }
+    }
+
     setUserData(data);
     setShowUserDetails(false);
     setQuizStarted(true);

@@ -5,9 +5,9 @@
   "questions": [
     {
       "id": 1,
-      "question": "What is 2 + 2?",
-      "options": ["3", "4", "22", "5"],
-      "answer": "4"
+      "question": "The Godowlia crossing is the heart of the city, but geographically, what was it originally before it was paved?",
+      "options": ["Charoli (Chironji)", "Canal/Drain (Nala)", "Flower Market (Phool Mandi)", "Weaver's Colony"],
+      "answer": "Canal/Drain (Nala)"
     },
     {
       "id": 2,
